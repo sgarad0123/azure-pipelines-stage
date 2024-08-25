@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: default
+  name: ADO
   vmImage: 'windows-latest'
 
 stages:
@@ -43,6 +43,7 @@ stages:
 - stage: DeployProd
   displayName: Deploy to PROD environment
   pool:
+    name: ADO
     vmImage: 'windows-latest'
   jobs:
   - job: DeployFrontendProd
@@ -54,6 +55,7 @@ stages:
   - job: DeployBackendProd
     displayName: Deploy backend to PROD
     pool:
+      name: ADO
       vmImage: 'windows-latest'
     steps:
     - script: echo deploying backend app to PROD
