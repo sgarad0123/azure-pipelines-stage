@@ -1,1 +1,18 @@
+trigger: 
+- main
+pool:
+  name: ADO
+  vmImage: 'windows-latest'
+
+jobs:
+- job: Deploy
+  steps:
+  - task: SSH@0
+    inputs:
+      sshEndpoint: 'Shubham-ssh'
+      runOptions: 'commands'
+      commands: |
+        echo "Deploying code via SSH"
+        # Copy files, restart services, or execute commands on the Windows VM
+  displayName: 'Deploy to Windows VM via SSH'
 
