@@ -16,11 +16,22 @@ jobs:
   #       echo "Deploying code via SSH"
   #       # Copy files, restart services, or execute commands on the Windows VM
   # displayName: 'Deploy to Windows VM via SSH'
-  - task: SSH@0
-    inputs:
-        sshEndpoint: 'Shubham-ssh'
-        runOptions: 'commands'
-        commands: 'echo "deployt the code"'
-        readyTimeout: '20000'
+  # - task: SSH@0
+  #   inputs:
+  #       sshEndpoint: 'Shubham-ssh'
+  #       runOptions: 'commands'
+  #       commands: 'echo "deployt the code"'
+  #       readyTimeout: '20000'
+  #       args: 
+
+    - task: PowerShellOnTargetMachines@3
+      inputs:
+       Machines: '172.27.194.20'
+       UserName: 'Desktop-8r1fah3\shubham'
+       UserPassword: '9403'
+       InlineScript: |
+         # Write your powershell commands here.
+      
+         Write-Output "Hello World"
 
     
