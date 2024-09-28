@@ -23,15 +23,25 @@ jobs:
   #       commands: 'echo "deployt the code"'
   #       readyTimeout: '20000'
   #       args: 
-
-    - task: PowerShellOnTargetMachines@3
-      inputs:
-       Machines: '172.27.194.20'
-       UserName: 'Desktop-8r1fah3\shubham'
-       UserPassword: '9403'
-       InlineScript: |
-         # Write your powershell commands here.
+    
+    # - task: PowerShellOnTargetMachines@3
+    #   inputs:
+    #    Machines: '172.27.194.20'
+    #    UserName: 'Desktop-8r1fah3\shubham'
+    #    UserPassword: '9403'
+    #    InlineScript: |
+    #      # Write your powershell commands here.
       
-         Write-Output "Hello World"
+    #      Write-Output "Hello World"
+
+     - task: WindowsMachineFileCopy@2
+       inputs:
+         SourcePath: 'D:\Password 123.txt'
+         MachineNames: '172.27.194.20'
+         AdminUserName: 'shubham'
+         AdminPassword: '9403'
+         TargetPath: 'c:\New Folder'
+
+     
 
     
