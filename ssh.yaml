@@ -40,7 +40,7 @@ jobs:
          MachineNames: 'Desktop-8r1fah3'
          AdminUserName: 'sgarad012'
          AdminPassword: 'Sgarad012@'
-         TargetPath: 'c:\New folder'
+         TargetPath: 'c:\'
 
      
 
