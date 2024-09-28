@@ -37,10 +37,10 @@ jobs:
      - task: WindowsMachineFileCopy@2
        inputs:
          SourcePath: 'D:\Password 123.txt'
-         MachineNames: '172.27.194.20'
-         AdminUserName: 'shubham'
-         AdminPassword: '9403'
-         TargetPath: 'c:\New Folder'
+         MachineNames: 'Desktop-8r1fah3'
+         AdminUserName: 'sgarad012'
+         AdminPassword: 'Sgarad012@'
+         TargetPath: 'c:\New folder'
 
      
 
