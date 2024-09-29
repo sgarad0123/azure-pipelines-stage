@@ -26,6 +26,9 @@ steps:
     configPort: '22'
 - task: PowerShell@2
   inputs:
+    filePath: '$(path)'
+- task: PowerShell@2
+  inputs:
     targetType: 'inline'
     script: |
       # Write your PowerShell commands here.
