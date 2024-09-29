@@ -1,1 +1,6 @@
+trigger: 
 
+- main
+pool:
+  name: ADO
+  vmImage: 'windows-latest'
