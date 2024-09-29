@@ -8,14 +8,14 @@ pool:
 jobs:
 - job: Deploy
   steps:
-  # - task: SSH@0
-  #   inputs:
-  #     sshEndpoint: 'Shubham-ssh'
-  #     runOptions: 'commands'
-  #     commands: |
-  #       echo "Deploying code via SSH"
-  #       # Copy files, restart services, or execute commands on the Windows VM
-  # displayName: 'Deploy to Windows VM via SSH'
+  - task: SSH@0
+    inputs:
+      sshEndpoint: 'openSSH'
+      runOptions: 'commands'
+      commands: |
+        echo "Deploying code via SSH"
+        # Copy files, restart services, or execute commands on the Windows VM
+  displayName: 'Deploy to Windows VM via SSH'
   # - task: SSH@0
   #   inputs:
   #       sshEndpoint: 'Shubham-ssh'
@@ -34,13 +34,13 @@ jobs:
       
     #      Write-Output "Hello World"
 
-     - task: WindowsMachineFileCopy@2
-       inputs:
-         SourcePath: 'D:\Password 123.txt'
-         MachineNames: 'Desktop-8r1fah3'
-         AdminUserName: 'sgarad012'
-         AdminPassword: 'Sgarad012@'
-         TargetPath: 'c:\'
+    #  - task: WindowsMachineFileCopy@2
+    #    inputs:
+    #      SourcePath: 'D:\Password 123.txt'
+    #      MachineNames: 'Desktop-8r1fah3'
+    #      AdminUserName: 'sgarad012'
+    #      AdminPassword: 'Sgarad012@'
+    #      TargetPath: 'c:\'
 
      
 
