@@ -24,10 +24,19 @@ steps:
     configHostname: 'DESKTOP-8R1FAH3'
     configUser: 'shubham'
     configPort: '22'
-
 - task: PowerShell@2
   inputs:
-    filePath: './script.ps1'
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      $privateKeyPath = "./id_rsa"
+      $session = New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile $privateKeyPath
+
+      Invoke-SSHCommand -Index 0 -Command "echo 'hello world' "
+# - task: PowerShell@2
+#   inputs:
+#     filePath: './script.ps1'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
