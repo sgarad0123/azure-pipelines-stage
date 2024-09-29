@@ -31,7 +31,8 @@ jobs:
           $password = '9403'  # Consider using a secure method to handle this
 
           # Create the SSH command
-          $command = "ssh -o StrictHostKeyChecking=no $username@$hostname 'echo \"hello shubham\"'"
+          $command = "ssh $username@$hostname"
+          
 
           # Execute the command
           Invoke-Expression $command
