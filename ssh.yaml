@@ -18,25 +18,31 @@ trigger:
 #   displayName: 'Deploy to Windows VM via SSH'
 
 
-jobs:
-  - job: SSHCommand
-    pool:
-      name: ADO
-      vmImage: 'windows-latest'
-
-    steps:
-      - script: |
-          $username = 'shubham'
-          $hostname = 'DESKTOP-8R1FAH3'
-          $password = '9403'  # Consider using a secure method to handle this
-
-          # Create the SSH command
-          $command = "ssh $username@$hostname"
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      # Define your SSH credentials and host
+      $username = "shubham"
+      $password = "9403"
+      $host = "DESKTOP-8R1FAH3"
+      
+      # Create a secure string for the password
+      $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+      $credential = New-Object System.Management.Automation.PSCredential ($username, $securePassword)
+      
+      # Try to start the SSH session
+      try {
+          # Start the SSH session and handle the prompt for confirmation
+          $process = Start-Process -FilePath "ssh" -ArgumentList "$username@$host" -Credential $credential -NoNewWindow -PassThru
           
-
-          # Execute the command
-          Invoke-Expression $command
-        displayName: 'Run SSH Command'
+          # Wait for the process to exit
+          $process.WaitForExit()
+      } catch {
+          Write-Host "An error occurred: $_"
+      }
 
 
      
