@@ -7,6 +7,7 @@ pool:
 variables:
   UsernameVariable: '$(username)' # Replace with the actual variable name in Azure DevOps
   PasswordVariable: '$(password)'
+  # PrivateKeyVariable: '$(privateKey)'
 
 steps:
 
@@ -28,12 +29,13 @@ steps:
       # Write your PowerShell commands here.
       # Install-Module -Name Posh-SSH -Force -AllowClobber -Scope CurrentUser
 
-      $username = "$(UsernameVariable)"
-      $password = ConvertTo-SecureString "$(PasswordVariable)" -AsPlainText -Force
-      $cred = New-Object System.Management.Automation.PSCredential($username, $password)
-      New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -Credential $cred
+      # $username = "$(UsernameVariable)"
+      # $password = ConvertTo-SecureString "$(PasswordVariable)" -AsPlainText -Force
+      # $cred = New-Object System.Management.Automation.PSCredential($username, $password)
+      # New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -Credential $cred
     
-      
+      $privateKeyPath = "id_rsa"
+      New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile $privateKeyPath
       # Automate yes/no prompts
       
 
