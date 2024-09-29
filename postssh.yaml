@@ -4,3 +4,12 @@ trigger:
 pool:
   name: ADO
   vmImage: 'windows-latest'
+steps:
+
+  
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'openSSH'
+    runOptions: 'commands'
+    commands: 'echo "Hello shubham"'
+    readyTimeout: '20000'
