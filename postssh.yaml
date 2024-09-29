@@ -20,14 +20,12 @@ steps:
 #           socketTimeout: '200'
        
 #        ssh -l $(private-key) shubham@DESKTOP-8R1FA
-- task: SSH@0
+- task: InstallSSHKey@0
+  displayName: 'Install an SSH key'
   inputs:
-    sshEndpoint: 'openSSH'
-    runOptions: 'commands'
-    commands: 'ipconfig'
-    interactiveSession: true
-    readyTimeout: '20000'
-    interactiveKeyboardAuthentication: true
+    knownHostsEntry: 'SHA256:wzvCNBYYki1s1EHnzCKO1tyhuNnETeZXOBcBPhRWOX0 shubham@DESKTOP-8R1FAH3'
+    sshPublicKey: '$(myPubKey)'
+    sshKeySecureFile: 'id_rsa'
 
       
       # # Using echo to send yes response
