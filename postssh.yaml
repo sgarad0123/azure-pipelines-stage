@@ -32,7 +32,7 @@ steps:
       $password = ConvertTo-SecureString "$(PasswordVariable)" -AsPlainText -Force
       $cred = New-Object System.Management.Automation.PSCredential($username, $password)
       New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -Credential $cred
-    pwsh: true
+    
       
       # Automate yes/no prompts
       
