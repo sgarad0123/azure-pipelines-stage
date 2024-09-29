@@ -23,19 +23,19 @@ steps:
       # # PASSWORD
       # echo "9403" | & $command
       # Define your SSH credentials
-       $host = "DESKTOP-8R1FAH3"
-       $username = "shubham"
-       $password = "9403"  # Use PowerShell's SecureString for better security
+      #  $host = "DESKTOP-8R1FAH3"
+      #  $username = "shubham"
+      #  $password = "9403"  # Use PowerShell's SecureString for better security
        
-       # Convert password to a SecureString
-       $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+      #  # Convert password to a SecureString
+      #  $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
        
        # Create a PSCredential object using the username and secure password
-       $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+       $credential = New-Object System.Management.Automation.PSCredential($shubham, $9403)
 
        # Command to establish SSH connection (assuming OpenSSH is installed)
-       $sshCommand = "ssh $username@$host"
+       $sshCommand = "ssh $shubham@$DESKTOP-8R1FAH3"
 
        # Start the SSH process
-       Start-Process -FilePath "ssh" -ArgumentList "$username@$host"
+       Start-Process -FilePath "ssh" -ArgumentList "$shubham@$DESKTOP-8R1FAH3"
 
