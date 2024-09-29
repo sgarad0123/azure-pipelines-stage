@@ -1,9 +1,9 @@
 trigger: 
 
 - main
-# pool:
-#   name: ADO
-#   vmImage: 'windows-latest'
+pool:
+  name: ADO
+  vmImage: 'windows-latest'
 
 # jobs:
 # - job: Deploy
@@ -18,31 +18,13 @@ trigger:
 #   displayName: 'Deploy to Windows VM via SSH'
 
 
-- task: PowerShell@2
+steps:
+- task: InstallSSHKey@0
+  displayName: 'Install an SSH key'
   inputs:
-    targetType: 'inline'
-    script: |
-      # Write your PowerShell commands here.
-      
-      # Define your SSH credentials and host
-      $username = "shubham"
-      $password = "9403"
-      $host = "DESKTOP-8R1FAH3"
-      
-      # Create a secure string for the password
-      $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
-      $credential = New-Object System.Management.Automation.PSCredential ($username, $securePassword)
-      
-      # Try to start the SSH session
-      try {
-          # Start the SSH session and handle the prompt for confirmation
-          $process = Start-Process -FilePath "ssh" -ArgumentList "$username@$host" -Credential $credential -NoNewWindow -PassThru
-          
-          # Wait for the process to exit
-          $process.WaitForExit()
-      } catch {
-          Write-Host "An error occurred: $_"
-      }
+    knownHostsEntry: 'SHA256:wzvCNBYYki1s1EHnzCKO1tyhuNnETeZXOBcBPhRWOX0 shubham@DESKTOP-8R1FAH3'
+    sshPublicKey: '$(myPubKey)'
+    sshKeySecureFile: 'id_rsa.pub'
 
 
      
