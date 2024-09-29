@@ -31,12 +31,12 @@ steps:
       # Write your PowerShell commands here.
       
       Install-Module -Name Posh-SSH -Force -AllowClobber -Scope CurrentUser
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'openSSH'
-    runOptions: 'commands'
-    commands: 'echo "MC"'
-    readyTimeout: '20000'
+# - task: SSH@0
+#   inputs:
+#     sshEndpoint: 'openSSH'
+#     runOptions: 'commands'
+#     commands: 'echo "MC"'
+#     readyTimeout: '20000'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
