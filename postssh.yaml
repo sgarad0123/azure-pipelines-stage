@@ -15,7 +15,7 @@ steps:
       
       # Automate yes/no prompts
        
-      #  ssh shubham@DESKTOP-8R1FAH3
+       ssh shubham@DESKTOP-8R1FAH3
 
       
       # # Using echo to send yes response
@@ -31,11 +31,5 @@ steps:
       #  $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
        
        # Create a PSCredential object using the username and secure password
-       $credential = New-Object System.Management.Automation.PSCredential($shubham, $9403)
-
-       # Command to establish SSH connection (assuming OpenSSH is installed)
-       $sshCommand = "ssh $shubham@$DESKTOP-8R1FAH3"
-
-       # Start the SSH process
-       Start-Process -FilePath "ssh" -ArgumentList "$shubham@$DESKTOP-8R1FAH3"
+      
 
