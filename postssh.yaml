@@ -80,10 +80,16 @@ steps:
       # Automate yes/no prompts
       $password = ConvertTo-SecureString "$(SSH_PASSWORD)" -AsPlainText -Force
       $credential = New-Object System.Management.Automation.PSCredential ("$(SSH_USERNAME)", $password)
-      
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
       # Establish SSH session
       $session = New-SSHSession -ComputerName "$(SSH_HOST)" -Credential $credential
-
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
       # Run a command on the remote system
       $result = Invoke-SSHCommand -Index $session.SessionId -Command "echo 'hello world'"
       Write-Output $result.Output
