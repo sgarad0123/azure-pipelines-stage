@@ -5,28 +5,12 @@ pool:
   name: ADO
   vmImage: 'windows-latest'
 
-# jobs:
-# - job: Deploy
-#   steps:
-#   - task: SSH@0
-#     inputs:
-#       sshEndpoint: 'openSSH'
-#       runOptions: 'commands'
-#       commands: |
-#         echo "Deploying code via SSH"
-#         # Copy files, restart services, or execute commands on the Windows VM
-#   displayName: 'Deploy to Windows VM via SSH'
-
-
 steps:
 - task: InstallSSHKey@0
   displayName: 'Install an SSH key'
   inputs:
-    knownHostsEntry: 'SHA256:wzvCNBYYki1s1EHnzCKO1tyhuNnETeZXOBcBPhRWOX0 shubham@DESKTOP-8R1FAH3'
+    knownHostsEntry: 'shubham@DESKTOP-8R1FAH3'
     sshPublicKey: '$(myPubKey)'
-    sshKeySecureFile: 'id_rsa.pub'
+    sshKeySecureFile: 'id_rsa'
 
 
-     
-
-    
