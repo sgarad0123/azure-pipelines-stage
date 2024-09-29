@@ -12,7 +12,9 @@ steps:
     targetType: 'inline'
     script: |
       # Write your PowerShell commands here.
-      Install-Module -Name Posh-SSH -Force -AllowClobber
+      $password = ConvertTo-SecureString "9403" -AsPlainText -Force
+      $credential = New-Object System.Management.Automation.PSCredential ("shubham", $password)
+      New-SSHSession -ComputerName "DESKTOP-8R1FA" -Credential $credential
       
       # Automate yes/no prompts
       
