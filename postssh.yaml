@@ -29,7 +29,7 @@ steps:
       # Install-Module -Name Posh-SSH -Force -AllowClobber -Scope CurrentUser
 
       $username = "$(UsernameVariable)"
-      $password = ConvertTo-SecureString "$(PasswordVariable)" -AsPlainText -Force
+      $password = ConvertTo-SecureString "9403" -AsPlainText -Force
       $cred = New-Object System.Management.Automation.PSCredential($username, $password)
       New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -Credential $cred
     
