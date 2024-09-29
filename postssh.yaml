@@ -80,12 +80,13 @@ steps:
       # Automate yes/no prompts
       $password = ConvertTo-SecureString "$(SSH_PASSWORD)" -AsPlainText -Force
       $credential = New-Object System.Management.Automation.PSCredential ("$(SSH_USERNAME)", $password)
+      $session = New-SSHSession -ComputerName "$(SSH_HOST)" -Credential $credential -ErrorAction Stop
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
       # Establish SSH session
-      $session = New-SSHSession -ComputerName "$(SSH_HOST)" -Credential $credential
+      $session = SSHSession -ComputerName "$(SSH_HOST)" -Credential $credential
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
