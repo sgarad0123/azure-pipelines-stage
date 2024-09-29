@@ -14,7 +14,7 @@ steps:
       # Write your PowerShell commands here.
       
       # Automate yes/no prompts
-       ipconfig
+       
       #  ssh shubham@DESKTOP-8R1FAH3
 
       
@@ -22,3 +22,20 @@ steps:
       # echo "[FINGERPRINT]" | & $command
       # # PASSWORD
       # echo "9403" | & $command
+      # Define your SSH credentials
+       $host = "your_host_or_ip"
+       $username = "your_username"
+       $password = "your_password"  # Use PowerShell's SecureString for better security
+       
+       # Convert password to a SecureString
+       $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+       
+       # Create a PSCredential object using the username and secure password
+       $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+
+       # Command to establish SSH connection (assuming OpenSSH is installed)
+       $sshCommand = "ssh $username@$host"
+
+       # Start the SSH process
+       Start-Process -FilePath "ssh" -ArgumentList "$username@$host"
+
