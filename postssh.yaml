@@ -30,8 +30,8 @@ steps:
     script: |
       # Write your PowerShell commands here.
       
-      # $privateKeyPath = './id_rsa'
-      $session = New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile .\id_rsa.pem
+      $privateKeyPath = "C:\agent\_work\7\s\id_rsa.pem"
+      $session = New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile $privateKeyPath
 
       Invoke-SSHCommand -Index 0 -Command "echo 'hello world' "
 # - task: PowerShell@2
