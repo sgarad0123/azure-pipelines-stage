@@ -24,8 +24,15 @@ steps:
   displayName: 'Install an SSH key'
   inputs:
     knownHostsEntry: 'SHA256:wzvCNBYYki1s1EHnzCKO1tyhuNnETeZXOBcBPhRWOX0 shubham@DESKTOP-8R1FAH3'
-    sshPublicKey: '$(myPubKey)'
+    sshPublicKey: '$(ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzsrnhjnzfvQRI2O/0GZbt7Yp/P6ljPlBNqLqufvNzE1VZvXP91hDGftkhXGghSkQ5rWKThSiaTlYhnNtyiGoGv1cv2NHs8ygRymsGin/m+WbvyVq+Tbpnuy+mRktVlDBl3Rtanm/A0+muwscCSkid0tvgcTEIH1ln2es+2/rd7v3dzF17LJJtDGq5Fin1rmRpXS2qQpiQWTHdOmWkThEQIYXB9+mBA6lK9hMVw/5zOGVk1iA+dKbqbs01cEkTHEWHhgM9EC/r4iL36mvXYOpTkm+9tIY0cWdlYOSFs0r1pVE76VaYkSGTBoDzM+WQvgkEINcGF31o6NZOhI2PXuXlhr8xDPVXkL26854BY/pxdiPcWSIbRoT7ZJoFtI+/IGIBi/+Rt+M2p6XhpSl1uG7SY3I8/Y6Hi+A61GofWpC+t9WdBgpZM1HdvO6z4SlDYVe2qj5T3Sm18sGAX2JDMoiF1Gocqm1xmIzlWkToSsh/FpfWr1b8SDcHR/E0JiUhF1Y1EIh71dj4oFyY3EBEVkPAqN2E5xLn/P88dP0N3qcTKzoAj1hvK7Atmv3U1ljPt30NRtCDhZOGhSmbRCqZv0uu0fgJAUclTCxeqqoYXD6I6z7VvFDNC1+0sAB9wY0Fhp53e3Z7l+g7rDVMBcEwhAgpZADYJF8VVzsBDsbMKc+f6Q== shubham@DESKTOP-8R1FAH3)'
     sshKeySecureFile: 'id_rsa'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'openSSH'
+    runOptions: 'commands'
+    commands: 'ipconfig'
+    readyTimeout: '20000'
 
       
       # # Using echo to send yes response
