@@ -12,10 +12,10 @@ steps:
     targetType: 'inline'
     script: |
       # Write your PowerShell commands here.
+      Install-Module -Name Posh-SSH -Force -AllowClobber
       
       # Automate yes/no prompts
-       choco install sshpass
-       sshpass -p "9403" ssh shubham@DESKTOP-8R1FAH3
+      
 
 
        
