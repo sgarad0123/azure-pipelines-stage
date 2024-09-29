@@ -7,23 +7,27 @@ pool:
 steps:
 
   
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       # Write your PowerShell commands here.
-      
-#       # Automate yes/no prompts
-       
-      #  ssh shubham@DESKTOP-8R1FA
-- task: SSH@0
+- task: PowerShell@2
   inputs:
-    sshEndpoint: 'openSSH'
-    runOptions: 'commands'
-    commands: 'ipconfig'
-    interactiveSession: true
-    readyTimeout: '20000'
-    interactiveKeyboardAuthentication: true
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      # Automate yes/no prompts
+      - task: DownloadSecureFile@1
+        inputs:
+          secureFile: 'id_rsa'
+          socketTimeout: '200'
+       
+       ssh -l $(private-key) shubham@DESKTOP-8R1FA
+# - task: SSH@0
+#   inputs:
+#     sshEndpoint: 'openSSH'
+#     runOptions: 'commands'
+#     commands: 'ipconfig'
+#     interactiveSession: true
+#     readyTimeout: '20000'
+#     interactiveKeyboardAuthentication: true
 
       
       # # Using echo to send yes response
