@@ -16,12 +16,12 @@ steps:
     versionSpec: 
 - task: InstallSSHKey@0
   inputs:
-    knownHostsEntry: 'shubham@DESKTOP-8R1FAH3'
+    knownHostsEntry: 'SHA256:wzvCNBYYki1s1EHnzCKO1tyhuNnETeZXOBcBPhRWOX0 shubham@DESKTOP-8R1FAH3'
     sshPassphrase: 'shubham'
     sshKeySecureFile: 'id_rsa'
     addEntryToConfig: true
     configHostAlias: 'Shubham_SSH'
-    configHostname: 'shubham@DESKTOP-8R1FAH3'
+    configHostname: 'DESKTOP-8R1FAH3'
     configUser: 'shubham'
     configPort: '22'
 - task: PowerShell@2
@@ -48,9 +48,7 @@ steps:
       # $password = ConvertTo-SecureString "$(PasswordVariable)" -AsPlainText -Force
       # $cred = New-Object System.Management.Automation.PSCredential($username, $password)
       # New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -Credential $cred
-    
-      $privateKeyPath = "id_rsa"
-      New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile $privateKeyPath
+        New-SSHSession -ComputerName "DESKTOP-8R1FAH3"
       # Automate yes/no prompts
       
 
