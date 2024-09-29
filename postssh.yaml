@@ -7,9 +7,16 @@ pool:
 steps:
 
   
-- task: SSH@0
+- task: PowerShell@2
   inputs:
-    sshEndpoint: 'openSSH'
-    runOptions: 'commands'
-    commands: 'echo "Hello shubham"'
-    readyTimeout: '20000'
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      # Automate yes/no prompts
+      $command = "Some-Command"
+      
+      # Using echo to send yes response
+      echo "[FINGERPRINT]" | & $command
+      # PASSWORD
+      echo "9403" | & $command
