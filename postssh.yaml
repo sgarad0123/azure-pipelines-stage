@@ -31,7 +31,7 @@ steps:
       # Write your PowerShell commands here.
       
       # $privateKeyPath = './id_rsa'
-      $session = New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile $(C:\agent\_work\7\s\id_rsa.pem)
+      $session = New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile 'C:\agent\_work\7\s\id_rsa.pem'
 
       Invoke-SSHCommand -Index 0 -Command "echo 'hello world' "
 # - task: PowerShell@2
