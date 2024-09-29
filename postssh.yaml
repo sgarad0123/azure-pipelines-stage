@@ -51,9 +51,9 @@ steps:
         # New-SSHSession -ComputerName "DESKTOP-8R1FAH3"
 
        # Variables
-      $username = "shubham"  # Azure DevOps variable for username
+      # $username = "shubham"  # Azure DevOps variable for username
       # $password = ConvertTo-SecureString "9403" -AsPlainText -Force  # Azure DevOps variable for password
-      $credential = New-Object System.Management.Automation.PSCredential($username, 9403)
+      $credential = New-Object System.Management.Automation.PSCredential(shubham, 9403)
       $server = "DESKTOP-8R1FAH3"
 
       # Use PowerShell Remoting to execute the echo command
