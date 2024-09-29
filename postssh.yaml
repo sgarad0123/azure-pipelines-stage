@@ -23,9 +23,9 @@ steps:
       # # PASSWORD
       # echo "9403" | & $command
       # Define your SSH credentials
-       $host = "your_host_or_ip"
-       $username = "your_username"
-       $password = "your_password"  # Use PowerShell's SecureString for better security
+       $host = "DESKTOP-8R1FAH3"
+       $username = "shubham"
+       $password = "9403"  # Use PowerShell's SecureString for better security
        
        # Convert password to a SecureString
        $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
