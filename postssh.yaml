@@ -14,7 +14,7 @@ steps:
       # Write your PowerShell commands here.
       
       # Automate yes/no prompts
-      $command = "Some-Command"
+      $command = "ssh shubham@DESKTOP-8R1FAH3"
       
       # Using echo to send yes response
       echo "[FINGERPRINT]" | & $command
