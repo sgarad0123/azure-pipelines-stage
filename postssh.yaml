@@ -4,14 +4,20 @@ trigger:
 pool:
   name: ADO
   vmImage: 'windows-latest'
+
+
 steps:
 
-  
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: 
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
       # Write your PowerShell commands here.
+      Install-Module -Name Posh-SSH -Force -AllowClobber
+
       $password = ConvertTo-SecureString "9403" -AsPlainText -Force
       $credential = New-Object System.Management.Automation.PSCredential ("shubham", $password)
       New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -Credential $credential
