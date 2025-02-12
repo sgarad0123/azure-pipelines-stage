@@ -8,7 +8,9 @@ pool:
     - Agent.Name -equals ADO2 # Change to your agent pool
     
 variables:
-- group: VM  # Link to the Variable Group
+  targetServer: "DESKTOP-8R1FAH3"  # Change to your remote VM
+  userName: "shubham"            # Change to your remote VM username
+  password: "9403"
 
 stages:
 - stage: FetchIPConfig
