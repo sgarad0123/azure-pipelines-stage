@@ -11,8 +11,10 @@ param (
 $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
 $cred = New-Object System.Management.Automation.PSCredential ($Username, $securePassword)
 
-Invoke-Command -ComputerName $TargetVM -Credential $cred -ScriptBlock {
-    param ($AppPoolName, $ServiceAccount, $ServicePassword, $DotNetVersion)
+
+Invoke-Command -ComputerName $TargetVM -Credential $cred -Authentication Credssp -ScriptBlock {param ($AppPoolName, $ServiceAccount, $ServicePassword, $DotNetVersion) 
+
+
 
     Import-Module WebAdministration
 
