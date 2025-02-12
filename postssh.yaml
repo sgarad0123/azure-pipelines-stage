@@ -1,139 +1,23 @@
-trigger: 
+trigger:
+- main  # Adjust based on your branch
 
-- main
 pool:
   name: ADO
   vmImage: 'windows-latest'
-# variables:
-#   UsernameVariable: '$(username)' # Replace with the actual variable name in Azure DevOps
-#   PasswordVariable: '$(password)'
-#   # PrivateKeyVariable: '$(privateKey)'
-variables:
-  SSH_USERNAME: 'shubham'
-  SSH_PASSWORD: '9403'  # Ideally, this should be a secret variable
-  SSH_HOST: 'DESKTOP-8R1FAH3'
+  demands: 
+    - Agent.Name -equals ADO2 # Change to your agent pool
 
-steps:
-
-- task: NuGetToolInstaller@1
-  inputs:
-    versionSpec: 
-- task: InstallSSHKey@0
-  inputs:
-    knownHostsEntry: 'SHA256:wzvCNBYYki1s1EHnzCKO1tyhuNnETeZXOBcBPhRWOX0 shubham@DESKTOP-8R1FAH3'
-    sshPassphrase: 'shubham'
-    sshKeySecureFile: 'id_rsa'
-    addEntryToConfig: true
-    configHostAlias: 'Shubham_SSH'
-    configHostname: 'DESKTOP-8R1FAH3'
-    configUser: 'shubham'
-    configPort: '22'
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       # Write your PowerShell commands here.
-      
-#       $privateKeyPath = "C:\agent\_work\7\s\id_rsa.pem"
-#       $session = New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -KeyFile $privateKeyPath
-
-#       Invoke-SSHCommand -Index 0 -Command "echo 'hello world' "
-# - task: PowerShell@2
-#   inputs:
-#     filePath: './script.ps1'
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your PowerShell commands here.
-      
-      Install-Module -Name Posh-SSH -Force -AllowClobber -Scope CurrentUser
-# - task: SSH@0
-#   inputs:
-#     sshEndpoint: 'openSSH'
-#     runOptions: 'commands'
-#     commands: 'echo "MC"'
-#     readyTimeout: '20000'
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your PowerShell commands here.
-      # Install-Module -Name Posh-SSH -Force -AllowClobber -Scope CurrentUser
-
-      # $username = "$(UsernameVariable)"
-      # $password = ConvertTo-SecureString "$(PasswordVariable)" -AsPlainText -Force
-      # $cred = New-Object System.Management.Automation.PSCredential($username, $password)
-      # New-SSHSession -ComputerName "DESKTOP-8R1FAH3" -Credential $cred
-        # New-SSHSession -ComputerName "DESKTOP-8R1FAH3"
-
-       # Variables
-      # $username = "shubham"  # Azure DevOps variable for username
-      # $password = ConvertTo-SecureString "9403" -AsPlainText -Force  # Azure DevOps variable for password
-      # $credential = New-Object System.Management.Automation.PSCredential(shubham, 9403)
-      # $server = "DESKTOP-8R1FAH3"
-
-      # # Use PowerShell Remoting to execute the echo command
-      # Invoke-Command -ComputerName $server -Credential $credential -ScriptBlock {
-      #     echo "Hello from Azure DevOps Pipeline!"
-      # }
-      # Automate yes/no prompts
-      $password = ConvertTo-SecureString "$(SSH_PASSWORD)" -AsPlainText -Force
-      $credential = New-Object System.Management.Automation.PSCredential ("$(SSH_USERNAME)", $password)
-      # $session = New-SSHSession -ComputerName "$(SSH_HOST)" -Credential $credential 
-      try {
-          $session = New-SSHSession -ComputerName "$(SSH_HOST)" -Credential $credential -ErrorAction Stop
-          Write-Host "SSH session established successfully."
-      } catch {
-          Write-Error "Failed to establish SSH session: $_"
-          exit 1
-      }
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Establish SSH session
-      $session = SSHSession -ComputerName "$(SSH_HOST)" -Credential $credential
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Run a command on the remote system
-      $result = Invoke-SSHCommand -Index $session.SessionId -Command "echo 'hello world'"
-      Write-Output $result.Output
-
-      
-
-
-       
-#        ssh -l $(private-key) shubham@DESKTOP-8R1FA
-# - task: InstallSSHKey@0
-#   displayName: 'Install an SSH key'
-#   inputs:
-#     knownHostsEntry: 'SHA256:wzvCNBYYki1s1EHnzCKO1tyhuNnETeZXOBcBPhRWOX0 shubham@DESKTOP-8R1FAH3'
-#     sshPublicKey: '$(ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzsrnhjnzfvQRI2O/0GZbt7Yp/P6ljPlBNqLqufvNzE1VZvXP91hDGftkhXGghSkQ5rWKThSiaTlYhnNtyiGoGv1cv2NHs8ygRymsGin/m+WbvyVq+Tbpnuy+mRktVlDBl3Rtanm/A0+muwscCSkid0tvgcTEIH1ln2es+2/rd7v3dzF17LJJtDGq5Fin1rmRpXS2qQpiQWTHdOmWkThEQIYXB9+mBA6lK9hMVw/5zOGVk1iA+dKbqbs01cEkTHEWHhgM9EC/r4iL36mvXYOpTkm+9tIY0cWdlYOSFs0r1pVE76VaYkSGTBoDzM+WQvgkEINcGF31o6NZOhI2PXuXlhr8xDPVXkL26854BY/pxdiPcWSIbRoT7ZJoFtI+/IGIBi/+Rt+M2p6XhpSl1uG7SY3I8/Y6Hi+A61GofWpC+t9WdBgpZM1HdvO6z4SlDYVe2qj5T3Sm18sGAX2JDMoiF1Gocqm1xmIzlWkToSsh/FpfWr1b8SDcHR/E0JiUhF1Y1EIh71dj4oFyY3EBEVkPAqN2E5xLn/P88dP0N3qcTKzoAj1hvK7Atmv3U1ljPt30NRtCDhZOGhSmbRCqZv0uu0fgJAUclTCxeqqoYXD6I6z7VvFDNC1+0sAB9wY0Fhp53e3Z7l+g7rDVMBcEwhAgpZADYJF8VVzsBDsbMKc+f6Q== shubham@DESKTOP-8R1FAH3)'
-#     sshKeySecureFile: 'id_rsa'
-
-# - task: SSH@0
-#   inputs:
-#     sshEndpoint: 'openSSH'
-#     runOptions: 'commands'
-#     commands: 'ipconfig'
-#     readyTimeout: '20000'
-
-      
-      # # Using echo to send yes response
-      # echo "[FINGERPRINT]" | & $command
-      # # PASSWORD
-      # echo "9403" | & $command
-      # Define your SSH credentials
-      #  $host = "DESKTOP-8R1FAH3"
-      #  $username = "shubham"
-      #  $password = "9403"  # Use PowerShell's SecureString for better security
-       
-      #  # Convert password to a SecureString
-      #  $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
-       
-       # Create a PSCredential object using the username and secure password
-      
-
+stages:
+- stage: DeployIIS
+  displayName: "Deploy IIS App Pool"
+  jobs:
+  - job: CreateAppPool
+    displayName: "Create IIS App Pool on Remote Windows VM"
+    steps:
+    - task: PowerShell@2
+      displayName: "Run Remote IIS Setup"
+      inputs:
+        targetType: "filePath"
+        filePath: "$(Build.SourcesDirectory)/CreateAppPool_Remote.ps1"
+        arguments: "-TargetVM 'DESKTOP-8R1FAH3' -Username 'shubham' -Password '9403' -AppPoolName 'MyAppPool' -ServiceAccount 'DOMAIN\User' -ServicePassword 'P@ssword123' -DotNetVersion 'v4.0'"
+        failOnStderr: true
