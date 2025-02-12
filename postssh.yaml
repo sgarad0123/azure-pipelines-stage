@@ -27,5 +27,5 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: "Publish IP Config Output"
       inputs:
-        pathToPublish: "C:\ADO2\ipconfig_output_$(targetServer).txt"
+        pathToPublish: "C:\\ADO2\\ipconfig_output_$(targetServer).txt"
         artifactName: "IPConfigReport"
