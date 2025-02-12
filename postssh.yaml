@@ -22,7 +22,7 @@ stages:
       inputs:
         targetType: "inline"
         script: |
-          & "$(Build.SourcesDirectory)/Get-IPConfig.ps1" -TargetServer $(targetServer) -UserName $(userName) -Password $(password)
+          & "$(Build.SourcesDirectory)/CreateAppPool_Remote1.ps1" -TargetServer $(targetServer) -UserName $(userName) -Password $(password)
 
     - task: PublishBuildArtifacts@1
       displayName: "Publish IP Config Output"
