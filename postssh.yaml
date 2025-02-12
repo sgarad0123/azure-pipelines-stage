@@ -18,6 +18,6 @@ stages:
       displayName: "Run Remote IIS Setup"
       inputs:
         targetType: "filePath"
-        filePath: "$(Build.SourcesDirectory)/CreateAppPool_Remote.ps1"
+        filePath: "$(Build.SourcesDirectory)/CreateAppPool_Remote1.ps1"
         arguments: "-TargetVM 'DESKTOP-8R1FAH3' -Username 'shubham' -Password '9403' -AppPoolName 'MyAppPool' -ServiceAccount 'DOMAIN\User' -ServicePassword 'P@ssword123' -DotNetVersion 'v4.0'"
         failOnStderr: true
