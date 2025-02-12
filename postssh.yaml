@@ -1,23 +1,31 @@
 trigger:
-- main  # Adjust based on your branch
+- main
 
 pool:
   name: ADO
   vmImage: 'windows-latest'
   demands: 
     - Agent.Name -equals ADO2 # Change to your agent pool
+    
+variables:
+- group: VM  # Link to the Variable Group
 
 stages:
-- stage: DeployIIS
-  displayName: "Deploy IIS App Pool"
+- stage: FetchIPConfig
   jobs:
-  - job: CreateAppPool
-    displayName: "Create IIS App Pool on Remote Windows VM"
+  - job: RunIPConfig
     steps:
+    - checkout: self
+
     - task: PowerShell@2
-      displayName: "Run Remote IIS Setup"
+      displayName: "Run Get-IPConfig Script"
       inputs:
-        targetType: "filePath"
-        filePath: "$(Build.SourcesDirectory)/CreateAppPool_Remote1.ps1"
-        arguments: "-TargetVM 'DESKTOP-8R1FAH3' -Username 'shubham' -Password '9403' -AppPoolName 'MyAppPool' -ServiceAccount 'DOMAINUser' -ServicePassword 'P@ssword123' -DotNetVersion 'v4.0'"
-        failOnStderr: true
+        targetType: "inline"
+        script: |
+          & "$(Build.SourcesDirectory)/Get-IPConfig.ps1" -TargetServer $(targetServer) -UserName $(userName) -Password $(password)
+
+    - task: PublishBuildArtifacts@1
+      displayName: "Publish IP Config Output"
+      inputs:
+        pathToPublish: "C:\ADO2\ipconfig_output_$(targetServer).txt"
+        artifactName: "IPConfigReport"
